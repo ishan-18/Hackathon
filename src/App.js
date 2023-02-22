@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Footer from './components/Footer';
 import HeroSection from './components/HeroSection';
-import MapF from './components/MapF';
+import Mapp from './components/Mapp';
 import Navbar from './components/Navbar';
 import StepwiseCards from './components/Stepwise';
 
@@ -12,8 +12,8 @@ function App() {
       <Navbar />
       <HeroSection />
       <StepwiseCards />
+      <Mapp />
       <Footer />
-      <MapF />
     </div>
   );
 }

@@ -5,7 +5,7 @@ const HeroSection = () => {
     <section className="hero">
       <div className="hero-text">
         <h1>Welcome to Soil Health</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis ultrices urna, ac eleifend massa.</p>
+        <p>Let's nourish our soil for a healthy future !</p>
         <a href="#" className="hero-btn">Start Analysis</a>
       </div>
     </section>

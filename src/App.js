@@ -5,6 +5,8 @@ import HeroSection from './components/HeroSection';
 import Mapp from './components/Mapp';
 import Navbar from './components/Navbar';
 import StepwiseCards from './components/Stepwise';
+import Card from './components/Card';
+import { PinInputField } from '@chakra-ui/react';
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
       <StepwiseCards />
       <Mapp />
       <Footer />
+      {/* <Card/> */}
     </div>
   );
 }

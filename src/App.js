@@ -6,6 +6,7 @@ import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import Home from './components/Home';
 import Mapp from './components/Mapp';
+import SoilAnalysis from './components/SoilAnalysis';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/home" element={<Home />}></Route>
       <Route path="/dashboard" element={<Dashboard />}></Route>
       <Route path="/maps" element={<Mapp />}></Route>
+      <Route path='/soil-analysis' element={<SoilAnalysis />}></Route>
      
       </Routes>
       

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import { TableContainer, TableCaption, Thead, Th, Tbody, Tr, Td, Table, Tfoot, Box, Center, Text, Stack, VStack, HStack, ChakraProvider, Button } from "@chakra-ui/react";
+import { TableContainer, TableCaption, Grid, Heading, Thead, Th, Tbody, Tr, Td, Table, Tfoot, Box, Center, Text, Stack, VStack, HStack, ChakraProvider, Button } from "@chakra-ui/react";
 import Card from "./Card";
 
 const data = {
@@ -95,6 +95,7 @@ var Fertility = data.Fertility;
 var {cec, clay, nitrogen, oc, ocd, ph, predictions, sand, silt }= data.Fertility;
 
 const layer = ['Nutrient', 'Humus', 'Top Soil', 'Eluvial Soil', 'Sub Soil', 'Metric']
+
 function Mapp() {
 
     const [ sdata, setSdata ] = useState(data.Fertility);
@@ -119,7 +120,7 @@ function Mapp() {
         var lng = position['lng']
         // console.log('Latitude:', lat, 'Longitude:', lng); 
  
-        const url = `http://192.168.0.104:5000/post?Lat=${lat}&Long=${lng}&date=2022-07-01&end_dt=2022-07-30`;// Replace with your desired endpoint // Replace with your desired data
+        const url = `http://172.19.3.100:5000/post?Lat=${lat}&Long=${lng}&date=2022-07-01&end_dt=2022-07-30`;// Replace with your desired endpoint // Replace with your desired data
 
         fetch(url, {
         method: 'POST',
@@ -171,6 +172,7 @@ function Mapp() {
           />}
       </GoogleMap>
       <br/>
+      <Link to={'/soil-analysis'}>
       <button onClick={findLocation} style={{    
     background: "blue",
     color: "white",
@@ -180,75 +182,7 @@ function Mapp() {
     marginBottom: "20px"}}>
         Start Analysis 
       </button>
-      {isTableVisible && (
-            <ChakraProvider>
-              <TableContainer>
-            <Table variant='striped' colorScheme='blue'>
-              <Thead>
-              <Tr>
-                    {layer.map((label, index) => (
-                      <Th key={index}>{label}</Th>
-                    ))}
-                  </Tr>
-              </Thead>
-              <Tbody>
-                   <Tr>
-                    <Td>CEC</Td>
-                    {Object.values(cec).map((value, index) => (
-                      <Td key={index}>{value}</Td>
-                    ))}
-                  </Tr>
-                  <Tr>
-                    <Td>Nitrogen</Td>
-                    {Object.values(nitrogen).map((value, index) => (
-                      <Td key={index}>{value}</Td>
-                    ))}
-                  </Tr>
-                  <Tr>
-                    <Td>OC</Td>
-                    {Object.values(cec).map((value, index) => (
-                      <Td key={index}>{value}</Td>
-                    ))}
-                  </Tr>
-                  <Tr>
-                    <Td>OCD</Td>
-                    {Object.values(ocd).map((value, index) => (
-                      <Td key={index}>{value}</Td>
-                    ))}
-                  </Tr>
-                  <Tr>
-                    <Td>ph</Td>
-                    {Object.values(ph).map((value, index) => (
-                      <Td key={index}>{value}</Td>
-                    ))}
-                  </Tr>
-                  <Tr>
-                    <Td>Sand</Td>
-                    {Object.values(sand).map((value, index) => (
-                      <Td key={index}>{value}</Td>
-                    ))}
-                  </Tr>
-                  <Tr>
-                    <Td>Silt</Td>
-                    {Object.values(silt).map((value, index) => (
-                      <Td key={index}>{value}</Td>
-                    ))}
-                  </Tr>
-          
-              </Tbody>
-            </Table>
-          </TableContainer>
-          <button onClick={findLocation} style={{    
-          background: "blue",
-          color: "white",
-          padding: "12px 20px",
-          borderRadius: "10px",
-          textAlign: "center",
-          margin: "20px auto"}}>
-            Download 
-          </button>
-            </ChakraProvider>
-      )} 
+      </Link>
     </div>
   ) : null;
 }

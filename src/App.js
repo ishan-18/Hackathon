@@ -7,6 +7,8 @@ import Dashboard from './components/Dashboard';
 import Home from './components/Home';
 import Mapp from './components/Mapp';
 import SoilAnalysis from './components/SoilAnalysis';
+import Card1 from './components/Card1';
+import ReactPDF from './components/ReactPDF';
 
 function App() {
   return (
@@ -22,7 +24,7 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />}></Route>
       <Route path="/maps" element={<Mapp />}></Route>
       <Route path='/soil-analysis' element={<SoilAnalysis />}></Route>
-     
+      <Route path="/pdf"  element={<ReactPDF />}></Route>
       </Routes>
       
       </BrowserRouter>

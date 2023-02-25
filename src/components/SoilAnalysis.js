@@ -67,14 +67,15 @@ const data = {
     }
   }
 
-// var Fertility = data.Fertility;
-// var {cec, clay, nitrogen, oc, ocd, ph, predictions, sand, silt }= data.Fertility;
+var Fertility = data.Fertility;
+var {cec, clay, nitrogen, oc, ocd, ph, predictions, sand, silt }= data.Fertility;
 
 const layer = ['Nutrient', 'Humus', 'Top Soil', 'Eluvial Soil', 'Sub Soil', 'Metric']
 
-function SoilAnalysis() {
+function SoilAnalysis({cec}) {
+  console.log(cec)
 
-    const [ sdata, setSdata ] = useState({});
+    const [ sdata, setSdata ] = useState(data.Fertility);
 
     const containerStyle = {
           width: "100%",
@@ -106,7 +107,7 @@ function SoilAnalysis() {
         })
         .then(response => response.json()) // Convert the response to JSON format
         .then(data => {
-          setSdata(data);
+          setSdata(data.Fertility);
         // { {cec, clay, nitrogen, oc, ocd, ph, predictions, sand, silt } = sdata.Fertility;}
           console.log(sdata);
           setIsTableVisible(!isTableVisible);
@@ -135,6 +136,10 @@ function SoilAnalysis() {
 
     const [isTableVisible, setIsTableVisible] = useState(false);
 
+    const handlePrintClick = () => {
+      window.print();
+    };
+
   return isLoaded ? (
     <div>
         <br></br>
@@ -157,8 +162,12 @@ function SoilAnalysis() {
             maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' p='5'  backgroundColor={"#3d3d3d"}>
           <Heading size="md">CEC</Heading>
           {Object.entries(sdata.cec).map(([key, value]) => (
-  <li key={key}>{key}: {value}</li>
-))}
+            <HStack key={key}>
+                <Text key={key}>
+                {key}: {value}
+                </Text>
+            </HStack>
+          ))}
         </Box>
         <Box color='white'
             fontWeight='semibold'
@@ -297,9 +306,16 @@ function SoilAnalysis() {
       </VStack>
     </Box>
   </Grid> 
+  <br></br>
+  {/* <button onClick={this.handlePrintClick}>
+
+  </button> */}
+  <Button onClick={() => handlePrintClick()} style={{background: "blue", color: "white"}}>
+    Download
+  </Button>
     </ChakraProvider>
 
-{/* {Object.entries(sdata.cec).map(([key, value]) => (
+{/* {Object.entries(sdata).map(([key, value]) => (
             <li>{key} {value}</li>
 ))} */}
     </div>
